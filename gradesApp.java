@@ -32,7 +32,6 @@ public class gradesApp {
 		 //this returns the student_id of the 1st document as String, which is converted into Integer    
 		     Integer id= Integer.decode(doc.get("student_id").toString());
 		    		     
-		     coll=(MongoCollection<Document>) iterable1;  //This is not necessary to do//
 		     
 		   /*  
 		   just go over the iterable collection and if student_id is same as student_id, then delete it and
