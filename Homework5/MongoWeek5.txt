@@ -1,0 +1,17 @@
+This week homeworks are easy!!
+
+H.W 5.1: 
+db.posts.aggregate([{$unwind:'$comments'}, {$group: {_id: "$comments.author", comments: {'$sum':1}}}, { $sort:{'comments':-1} } ])
+
+H.W 5.2:
+db.zips.aggregate([{$match: { pop: {$gt:25000}}}  ,{$group: {_id:"$state", average: {$avg:"$pop"}}}])
+
+
+H.W 5.3: 
+db.grades.aggregate([{$unwind:"$scores"}, {$match: { "scores.type" : {$ne:"quiz"}}}, {$group: { _id: {class_id:"$class_id"}  , average: {$avg: "$scores.score"} }},      {$sort:{'average':-1 }} ])
+
+
+H.W 5.4:
+ db.zips.aggregate([ {$project: {  first_char: {$substr : ["$city",0,1]}, population:"$pop" }}, {$match: { $or:[ {"first_char":"0" }, {"first_char":"1"}, {"first_char":"2"},{"first_char":"3"}, {"first_char":"4"},
+ {"first_char":"5"}, {"first_char":"6"}, {"first_char":"7"}, {"first_char":"8"},{"first_char":"9"} ]}},
+  {$group: {_id:{"first_char":"$first_char"}, total_population: {$sum:"$population" }}} ])
